@@ -29,7 +29,7 @@
                     <i class="icon ion-speedometer"></i> {{ Lang::get('cachet.dashboard.dashboard') }}
                 </a>
             </li>
-            <li  {{ set_active('dashboard/incidents*') }}>
+            <li {{ set_active('dashboard/incidents*') }}>
                 <a href="{{ URL::route('dashboard.incidents') }}">
                     <i class="icon ion-android-alert"></i> {{ Lang::get('cachet.dashboard.incidents') }}
                 </a>
@@ -39,7 +39,7 @@
                     <i class="fa fa-plus"></i> {{ Lang::get('cachet.dashboard.incident-create-template') }}
                 </a>
             </li> --}}
-            <li  {{ set_active('dashboard/components*') }}>
+            <li {{ set_active('dashboard/components*') }}>
                 <a href="{{ URL::route('dashboard.components') }}">
                     <i class="icons ion-ios-keypad"></i> {{ Lang::get('cachet.dashboard.components') }}
                 </a>
