@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\Model;
 use Watson\Validating\ValidatingTrait;
 
-class Group extends Eloquent
+class Group extends Model
 {
     use ValidatingTrait;
     use SoftDeletingTrait;
