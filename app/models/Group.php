@@ -6,8 +6,7 @@ use Watson\Validating\ValidatingTrait;
 
 class Group extends Model
 {
-    use ValidatingTrait;
-    use SoftDeletingTrait;
+    use SoftDeletingTrait, ValidatingTrait;
 
     protected $rules = [
         'name' => 'required',
