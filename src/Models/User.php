@@ -77,19 +77,21 @@ class User extends Model implements UserInterface, RemindableInterface
     /**
      * Find by api_key, or throw an exception.
      *
-     * @param string $api_key
-     * @param mixed  $columns
+     * @param string   $api_key
+     * @param string[] $columns
      *
-     * @throws ModelNotFoundException if no matching User exists.
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      *
      * @return \CachetHQ\Cachet\Models\User
      */
     public static function findByApiKey($api_key, $columns = ['*'])
     {
-        if ($user = static::where('api_key', $api_key)->first($columns)) {
-            return $user;
+        $user = static::where('api_key', $api_key)->first($columns);
+
+        if (!$user) {
+            throw new ModelNotFoundException();
         }
 
-        throw new ModelNotFoundException();
+        return $user;
     }
 }

@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('CachetHQ\Cachet\Auth\ApiKeyAuthenticator', function ($app) {
+        $this->app->bindShared('CachetHQ\Cachet\Auth\ApiKeyAuthenticator', function () {
             return new ApiKeyAuthenticator();
         });
     }
