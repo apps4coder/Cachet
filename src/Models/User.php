@@ -7,6 +7,7 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\UserTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -71,5 +72,24 @@ class User extends Model implements UserInterface, RemindableInterface
     public function getGravatarAttribute($size = 200)
     {
         return sprintf('https://www.gravatar.com/avatar/%s?size=%d', md5($this->email), $size);
+    }
+
+    /**
+     * Find by api_key, or throw an exception.
+     *
+     * @param string $api_key
+     * @param mixed  $columns
+     *
+     * @throws ModelNotFoundException if no matching User exists.
+     *
+     * @return \CachetHQ\Cachet\Models\User
+     */
+    public static function findByApiKey($api_key, $columns = ['*'])
+    {
+        if ($user = static::where('api_key', $api_key)->first($columns)) {
+            return $user;
+        }
+
+        throw new ModelNotFoundException();
     }
 }
