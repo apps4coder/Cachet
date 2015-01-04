@@ -111,6 +111,7 @@ class User extends Model implements UserInterface, RemindableInterface
 
     /**
      * Returns an API key.
+     *
      * @return string
      */
     public static function generateApiKey()
