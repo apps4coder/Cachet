@@ -49,6 +49,20 @@ class User extends Model implements UserInterface, RemindableInterface
     protected $guarded = [];
 
     /**
+     * Overrides the models boot method.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($user) {
+            $user->api_key = self::generateApiKey();
+        });
+    }
+
+    /**
      * Hash any password being inserted by default.
      *
      * @param string $password
@@ -93,5 +107,14 @@ class User extends Model implements UserInterface, RemindableInterface
         }
 
         return $user;
+    }
+
+    /**
+     * Returns an API key.
+     * @return string
+     */
+    public static function generateApiKey()
+    {
+        return str_random(20);
     }
 }
